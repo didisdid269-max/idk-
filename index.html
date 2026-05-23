@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- SECTION: Head -->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Site Viewer Proxy</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <!-- SECTION: App Shell -->
+    <header class="topbar" role="banner">
+      <div class="topbar-inner">
+        <div class="brand">
+          <span class="brand-mark" aria-hidden="true"></span>
+          <div class="brand-text">
+            <h1 class="brand-title">Site Viewer</h1>
+            <p class="brand-subtitle">Preview any site inside one clean window</p>
+          </div>
+        </div>
+
+        <!-- SECTION: URL Form -->
+        <form class="url-form" id="url-form" autocomplete="off" novalidate>
+          <label class="visually-hidden" for="url-input">Website URL</label>
+          <div class="url-input-wrap">
+            <span class="url-prefix" aria-hidden="true">https://</span>
+            <input
+              type="text"
+              id="url-input"
+              name="url"
+              inputmode="url"
+              placeholder="example.com or https://example.com"
+              required
+            />
+          </div>
+          <button type="submit" class="btn-primary" id="go-button">Go</button>
+        </form>
+      </div>
+    </header>
+
+    <!-- SECTION: Viewer Area -->
+    <main class="viewer-layout" role="main">
+      <section class="viewer-panel" aria-label="Website preview">
+        <div class="viewer-overlay" id="viewer-overlay">
+          <div class="viewer-intro">
+            <div class="accent-line"></div>
+            <h2>Enter a URL to get started</h2>
+            <p>
+              Use the bar above to load a site inside this window. Some sites may
+              block embedding for security reasons.
+            </p>
+            <ul class="helper-list">
+              <li>Start with a full URL or just the domain name.</li>
+              <li>If a page doesn&apos;t load, try a different site.</li>
+              <li>This is a simple viewer, not a privacy tool.</li>
+            </ul>
+          </div>
+        </div>
+        <div class="viewer-frame-wrap gradient-mesh grain">
+          <iframe
+            id="viewer-frame"
+            title="Website viewer"
+            sandbox="allow-same-origin allow-scripts allow-forms allow-popups allow-modals allow-downloads"
+          ></iframe>
+
+          <div class="viewer-state viewer-state--loading" id="state-loading" aria-hidden="true">
+            <div class="spinner" aria-hidden="true"></div>
+            <span>Loading site…</span>
+          </div>
+
+          <div class="viewer-state viewer-state--error" id="state-error" aria-hidden="true">
+            <strong>We couldn&apos;t show that page here.</strong>
+            <p>
+              Many websites prevent being displayed inside other sites.
+              <button type="button" class="link-button" id="open-direct">Open it in a new tab instead</button>.
+            </p>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <script src="script.js"></script>
+  </body>
+</html>
